@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "MathCmdTool/1.0.0": {
+        "runtime": {
+          "MathCmdTool.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MathCmdTool/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

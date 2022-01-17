@@ -1,0 +1,27 @@
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.exe
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.deps.json
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.runtimeconfig.json
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.runtimeconfig.dev.json
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.dll
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.pdb
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.csprojAssemblyReference.cache
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.AssemblyInfoInputs.cache
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.AssemblyInfo.cs
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.csproj.CoreCompileInputs.cache
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.dll
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.pdb
+C:\Users\danie\Documents\C#\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.genruntimeconfig.cache
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.exe
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.deps.json
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.runtimeconfig.json
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.runtimeconfig.dev.json
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.dll
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\bin\Debug\netcoreapp3.1\MathCmdTool.pdb
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.csproj.AssemblyReference.cache
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.AssemblyInfoInputs.cache
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.AssemblyInfo.cs
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.csproj.CoreCompileInputs.cache
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.dll
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.pdb
+C:\Users\gaulldj\Documents\C# Projects\Math Command Line\MathCmdTool\obj\Debug\netcoreapp3.1\MathCmdTool.genruntimeconfig.cache
