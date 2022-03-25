@@ -30,12 +30,13 @@ namespace MathCmdTool
         const string PREVIOUS_VALUE_VAR_NAME = "ans";
         static readonly char[] ALLOWED_VAR_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_".ToCharArray();
 
-        const string HELP_STRING = "§a== Commands ==§f\ndelvar [variable name]\tDeletes a variable. Providing '~' as the argument deletes " +
-            "all variables\nfunction [name] [comma-separated arguments] [function expression]\t Creates a custom function. " +
+        const string HELP_STRING = "§a== Commands ==§f\nversion\n\tDisplays the current version\nchangelog\n\tDisplays the most recent changelog" +
+            "\ndelvar [variable name]\n\tDeletes a variable. Providing '~' as the argument deletes " +
+            "all variables\nfunction [name] [comma-separated arguments] [function expression]\n\t Creates a custom function. " +
             "(for more on functions, see the Functions section below)\n" +
-            "delf [function name]\tDeletes a function. Providing '~' as the argument deletes all functions\n" +
-            "display [list]\tConverts each element of a list to a character and displays it. (See the Display section below)\n" +
-            "vars\tLists all variables\nconstss\tLists all constants\nfunctions\tLists all functions\n\ncolors\tLists all colors\n" +
+            "delf [function name]\n\tDeletes a function. Providing '~' as the argument deletes all functions\n" +
+            "display [list]\n\tConverts each element of a list to a character and displays it. (See the Display section below)\n" +
+            "vars\n\tLists all variables\nconsts\n\tLists all constants\nfunctions\n\tLists all functions\ncolors\n\tLists all colors\n" +
             "Simply input a math expression to evaluate it" +
             "\nTo declare and assign variables, simply use §7[variable name]=[value or expression]§f\n" +
             "The variable \"" + PREVIOUS_VALUE_VAR_NAME + "\" is used to store the result of the previous evaluation\n" +
@@ -83,12 +84,20 @@ namespace MathCmdTool
            "§§8 Dark Gray (§8===§f)\n\t§§9 Blue (§9===§f)\n\t§§A Green (§a===§f)\n\t§§B Cyan (§b===§f)\n\t§§C Red (§c===§f)\n\t" +
            "§§D Magenta (§d===§f)\n\t§§E Yellow (§e===§f)\n\t§§F White (§f===§f)";
 
+        const string VERSION = "1.0.0";
+        const string CHANGELOG_PATH = "CHANGELOG.TXT";
+
         static int Main(string[] args)
         {
             bool infiniteMode = false;
             if (args.Length <= 0)
             {
                 infiniteMode = true;
+            }
+
+            if (!Directory.Exists(basePath))
+            {
+                Directory.CreateDirectory(basePath);
             }
 
             Function.Init(EvaluateFunctionExpression, GetAst, EvaluateAstAndSetVars);
@@ -144,6 +153,17 @@ namespace MathCmdTool
             else if (args[0] == "colors")
             {
                 OutputMessage(COLORS_STRING);
+            }
+            else if (args[0] == "version")
+            {
+                OutputMessage("Math Command Tool Version " + VERSION);
+            }
+            else if (args[0] == "changelog")
+            {
+                if (File.Exists(CHANGELOG_PATH))
+                {
+                    Console.WriteLine(File.ReadAllText(CHANGELOG_PATH));
+                }
             }
             else if (args[0] == "vars")
             {
@@ -212,7 +232,7 @@ namespace MathCmdTool
                 if (IsReservedValue(varName))
                 {
                     // Illegal variable name; used by a constant
-                    OutputError("Invalid variable name: \"" + varName + "\" is a reserved name for a constant");
+                    OutputError("Invalid variable name: \"" + varName + "\" is a reserved name.");
                     return -1;
                 }
                 string expression = args[0].Substring(args[0].IndexOf("=") + 1);
@@ -345,7 +365,7 @@ namespace MathCmdTool
                 else if (IsReservedValue(funcName))
                 {
                     OutputError("Cannot use " + funcName + " as a function name because " +
-                                        "it is already a reserved value.");
+                                        "it is already a reserved name.");
                     return -1;
                 }
                 string[] argNames = argString.Split(',');
@@ -354,7 +374,7 @@ namespace MathCmdTool
                     if (IsReservedValue(argName))
                     {
                         OutputError("Cannot use " + argName + " as a function argument because " +
-                                        "it is already a reserved value.");
+                                        "it is already a reserved name.");
                         return -1;
                     }
                 }
@@ -670,7 +690,7 @@ namespace MathCmdTool
                                 if (IsReservedValue(varName))
                                 {
                                     throw new InvalidArgumentsException("Cannot use " + varName + " as a delegate argument because " +
-                                        "it is already a reserved value.");
+                                        "it is already a reserved name.");
                                 }
                             }
                         }
@@ -922,7 +942,8 @@ namespace MathCmdTool
                     string[] tokens = line.Split(' ');
                     string funcName = tokens[0];
                     string args = tokens[1];
-                    string expression = tokens[2];
+                    // Rest of the line (i.e. rest of the tokens) is the expression
+                    string expression = string.Join(' ', tokens[2..tokens.Length]);
 
                     CreateFunction(funcName, args, expression, false);
                     //customFunctions.Add(funcName, new Function(Functions._Custom, args.Length, new string[] { funcName },
@@ -1049,7 +1070,7 @@ namespace MathCmdTool
 
         private static bool IsReservedValue(string name)
         {
-            return (CONSTANTS.ContainsKey(name) || name == TIME_CONSTANT);
+            return (CONSTANTS.ContainsKey(name) || name == TIME_CONSTANT || Function.GetFunction(name) != null);
         }
     }
 }

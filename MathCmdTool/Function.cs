@@ -107,15 +107,15 @@ namespace MathCmdTool
             funcs.Add(new Function(new List<FunctionParameter>()
                 {
                     new FunctionParameter("list", FunctionParameterTypes.List),
-                }, new string[] { "max" }, x => new MathDataValue(x.Select(x => x.Value).Max())));
+                }, new string[] { "max" }, x => new MathDataValue(x.First().Contents.Select(x => x.Value).Max())));
             funcs.Add(new Function(new List<FunctionParameter>()
                 {
                     new FunctionParameter("list", FunctionParameterTypes.List),
-                }, new string[] { "min" }, x => new MathDataValue(x.Select(x => x.Value).Min())));
+                }, new string[] { "min" }, x => new MathDataValue(x.First().Contents.Select(x => x.Value).Min())));
             funcs.Add(new Function(new List<FunctionParameter>()
                 {
                     new FunctionParameter("list", FunctionParameterTypes.List),
-                }, new string[] { "avg", "amean" }, x => new MathDataValue(x.Select(x => x.Value).Average())));
+                }, new string[] { "avg", "amean" }, x => new MathDataValue(x.First().Contents.Select(x => x.Value).Average())));
 
             funcs.Add(new Function(new List<FunctionParameter>()
             {
@@ -207,6 +207,11 @@ namespace MathCmdTool
                 new FunctionParameter("delegate", 1)
             }, new string[] { "foreach" }, x => new MathDataValue(MList.ForEach(new MList(x[0]), x[1])),
             "Performs a delegate operation on each value of a list, and returns the new list"));
+            funcs.Add(new Function(new List<FunctionParameter>()
+            {
+                new FunctionParameter("list", FunctionParameterTypes.List)
+            }, new string[] { "join" }, x => new MathDataValue(MList.Join(new MList(x[0]))),
+            "Combines all elements in a list of lists into one list, and returns that new list"));
 
             funcs.Add(new Function(
                 new List<FunctionParameter>() { new FunctionParameter("value", FunctionParameterTypes.Number) },

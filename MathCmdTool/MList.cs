@@ -149,7 +149,16 @@ namespace MathCmdTool
             }
             return new MList(elems);
         }
-
+        public static MList Join(MList list)
+        {
+            List<MathDataValue> elems = list.CopyValues();
+            List<MathDataValue> newElems = new List<MathDataValue>();
+            foreach (MathDataValue value in elems)
+            {
+                newElems.AddRange(value.ListValue.CopyValues());
+            }
+            return new MList(newElems);
+        }
         public Ast[] ToAstArray()
         {
             Ast[] arr = new Ast[Elements.Count];

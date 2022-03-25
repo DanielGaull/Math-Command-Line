@@ -1,0 +1,42 @@
+Advanced Math:
+*Redo derivative & integral & solve w/ better precision
+
+Operation Definitions (?):
+*More difficult, but allow for defining custom operations
+
+Misc:
+*Allow delegates to be directly used as functions
+  -ex.) [x,y:x*y](7,4.2)
+  -Not very necessary since you can simply plug the values in, but may be helpful for some
+*Video tutorial
+*List split function
+*Some method of native code execution. Ability to create functions that run on native (C?) code
+
+Bugs:
+*Test the custom function with annuity (need to create it). Program stalls for some reason
+
+Locking Functions/Vars:
+*Way to prevent them from being deleted
+*Way to prevent vars from being changed (set constant means they cannot be changed)
+
+Matrices:
+*Matrices
+*Can create them from vector list (vectors will be the rows/cols, have matrr and matrc functions)
+*Adding/subtracting
+*Multiplying by scalar
+*Multiplying matrices together
+*Idenity matrix func (takes in the size)
+*Inverse function
+*Transpose function
+
+Refactoring:
+*AdvancedMath class that has functions for differentiating/integrating/solving/etc., and also can handle lists and vectors
+*Class that produces an output given Ast, so that Program doesn't have to do that anymore
+
+Create Installer
+*Write program to generate expressions to test and compare to C#
+*Doesn't properly create env vars
+*Needs to install Dotnet
+
+Online Page
+  -Note that <> doesn't work with command line, better to run m and use inf mode for complex applications
