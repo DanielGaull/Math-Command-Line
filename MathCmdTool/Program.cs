@@ -13,6 +13,7 @@ namespace MathCmdTool
             @"gaull_cmd_tools\math");
         static readonly string varsPath = Path.Combine(basePath, "vars.txt");
         static readonly string customFuncsPath = Path.Combine(basePath, "functions.txt");
+        static readonly string packagesPath = Path.Combine(basePath, "packages.txt");
 
         static Dictionary<string, MathDataValue> variables = new Dictionary<string, MathDataValue>();
         static readonly Dictionary<string, double> CONSTANTS = new Dictionary<string, double>()
@@ -922,16 +923,57 @@ namespace MathCmdTool
             reader.Close();
         }
 
-        static void LoadCustomFunctions()
+        static void LoadFunctionsFromFile(string filePath)
         {
             StreamReader reader;
             if (!File.Exists(customFuncsPath))
             {
-                reader = new StreamReader(File.Create(customFuncsPath));
+                reader = new StreamReader(File.Create(filePath));
             }
             else
             {
-                reader = new StreamReader(File.OpenRead(customFuncsPath));
+                reader = new StreamReader(File.OpenRead(filePath));
+            }
+
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                // '#' is the comment character
+                if (!line.StartsWith('#') && line.Trim().Length > 0)
+                {
+                    try
+                    {
+                        string[] tokens = line.Split(' ');
+                        string funcName = tokens[0];
+                        string args = tokens[1];
+                        // Rest of the line (i.e. rest of the tokens) is the expression
+                        string expression = string.Join(' ', tokens[2..tokens.Length]);
+
+                        CreateFunction(funcName, args, expression, false);
+                        //customFunctions.Add(funcName, new Function(Functions._Custom, args.Length, new string[] { funcName },
+                        //    x => EvaluateCustomFunction(args, expression, x)));
+                    }
+                    catch (Exception e)
+                    {
+                        OutputError("An error occurred while loading functions in file \"" + filePath + "\": " + e.Message + "\n\n" + e.StackTrace);
+                        continue;
+                    }
+                }
+            }
+            reader.Close();
+        }
+        static void LoadCustomFunctions()
+        {
+            // Load base custom functions
+            LoadFunctionsFromFile(customFuncsPath);
+            StreamReader reader;
+            if (!File.Exists(packagesPath))
+            {
+                reader = new StreamReader(File.Create(packagesPath));
+            }
+            else
+            {
+                reader = new StreamReader(File.OpenRead(packagesPath));
             }
 
             string line;
@@ -939,19 +981,11 @@ namespace MathCmdTool
             {
                 try
                 {
-                    string[] tokens = line.Split(' ');
-                    string funcName = tokens[0];
-                    string args = tokens[1];
-                    // Rest of the line (i.e. rest of the tokens) is the expression
-                    string expression = string.Join(' ', tokens[2..tokens.Length]);
-
-                    CreateFunction(funcName, args, expression, false);
-                    //customFunctions.Add(funcName, new Function(Functions._Custom, args.Length, new string[] { funcName },
-                    //    x => EvaluateCustomFunction(args, expression, x)));
+                    LoadFunctionsFromFile(line);
                 }
                 catch (Exception e)
                 {
-                    OutputError("An error occurred while loading functions: " + e.Message + "\n\n" + e.StackTrace);
+                    OutputError("An error occurred while loading package names: " + e.Message + "\n\n" + e.StackTrace);
                     continue;
                 }
             }

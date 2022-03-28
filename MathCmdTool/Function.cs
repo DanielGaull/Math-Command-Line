@@ -126,6 +126,12 @@ namespace MathCmdTool
             funcs.Add(new Function(new List<FunctionParameter>()
             {
                 new FunctionParameter("expression", 1),
+                new FunctionParameter("start", FunctionParameterTypes.Number),
+                new FunctionParameter("max", FunctionParameterTypes.Number)
+            }, new string[] { "prod" }, x => new MathDataValue(ProductFunction(x)), "Finds the product of the expression over the range"));
+            funcs.Add(new Function(new List<FunctionParameter>()
+            {
+                new FunctionParameter("expression", 1),
                 new FunctionParameter("lower_bound", FunctionParameterTypes.Number),
                 new FunctionParameter("upper_bound", FunctionParameterTypes.Number)
             }, new string[] { "int" }, x => new MathDataValue(Integrate(x)), "Returns the integral of the expression, between lower_bound " +
@@ -233,6 +239,8 @@ namespace MathCmdTool
                 new FunctionParameter("vector", FunctionParameterTypes.Vector)
             }, new string[] { "magnitude", "mag" }, x => new MathDataValue(MVector.Magnitude(new MVector(x[0])))));
 
+
+
             // Create list of all function tokens
             funcTokens = new List<string>();
             for (int i = 0; i < funcs.Count; i++)
@@ -253,6 +261,20 @@ namespace MathCmdTool
                 sum += exprEvaluator(args[0].Expression, varAssignments).NumberValue;
             }
             return sum;
+        }
+        private static double ProductFunction(Ast[] args)
+        {
+            int n = (int)args[1].Value;
+            int stop = (int)args[2].Value;
+            double prod = 1;
+            Dictionary<string, MathDataValue> varAssignments = new Dictionary<string, MathDataValue>();
+            varAssignments.Add(args[0].VarNames[0], new MathDataValue(n));
+            for (int i = n; i < stop + 1; i++)
+            {
+                varAssignments[args[0].VarNames[0]] = new MathDataValue(i);
+                prod *= exprEvaluator(args[0].Expression, varAssignments).NumberValue;
+            }
+            return prod;
         }
 
         const int INTEGRAL_INTERVALS = 100000;
